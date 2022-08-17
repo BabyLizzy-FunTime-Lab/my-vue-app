@@ -4,14 +4,24 @@
     <p>
       I'm gonna try to glue some of my old projects here. Today is a good day, FOR SCIENCE!!
     </p>
+    <p>
+      But first, lets see what sam has to say.....<br>
+      {{ samsays }}
+    </p>
   </div>
+  <CustomerList/>
+
 </template>
 
 <script>
+import CustomerList from '@/components/CustomerList.vue';
+
 export default {
   name: 'HelloWorld',
+  components: {CustomerList},
   props: {
-    msg: String
+    msg: String,
+    samsays: String
   }
 }
 </script>
