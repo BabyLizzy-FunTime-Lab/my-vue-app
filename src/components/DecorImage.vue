@@ -21,8 +21,6 @@
     }
     picture {
         margin: 1em 0em 3em 0em;
-        /* width: fit-content; */
-        /* height: fit-content; */
     }
 </style>
 
