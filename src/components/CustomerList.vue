@@ -8,7 +8,7 @@
             <li>Twitter</li>
         </ul>
     </div>
-    <DecorImage/>
+    <DecorImage imgcaption="Colors & Love"/> 
 </template>
 <script>
 import DecorImage from '@/components/DecorImage.vue';
