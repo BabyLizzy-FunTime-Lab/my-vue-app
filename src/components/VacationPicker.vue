@@ -1,8 +1,10 @@
 <template>
     <div class="container">
-        <h1>Pick your next vacation.</h1>
+        <h1>{{header}}</h1>
         <ul class="list-group">
-            <li class="list-group-item" v-for="country in countryData.countries" v-bind:key="country.id">
+            <li class="list-group-item" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
+                v-bind:title="country.details">
+                {{index}} -
                 {{country.name}}
             </li>
         </ul>
@@ -15,7 +17,8 @@
         name: 'VacationPicker',
         data: function() {
             return {
-                countryData: countryData
+                countryData: countryData,
+                header: 'Vue Vacation Picker'
             }
         }
     }
