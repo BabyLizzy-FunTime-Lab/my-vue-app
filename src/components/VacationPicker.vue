@@ -12,23 +12,36 @@
         </div>
         <div class="container teller">
             <h3>Teller: {{counter}}</h3>
-            <button v-on:click="counter++" class="btn btn-success">+</button>
-            <button v-on:click="counter--" class="btn btn-danger">-</button>
+            <button @click="increment()" class="btn btn-success">+</button>
+            <button @click="decrement()" class="btn btn-danger">-</button>
+            <!-- <button v-on:click="counter++" class="btn btn-success">+</button> -->
+            <!-- <button v-on:click="counter--" class="btn btn-danger">-</button> -->
         </div>
-        
-        
+        <TheWorld/>
     </div>
 </template>
 
 <script>
+    import TheWorld from './TheWorld.vue';
     import countryData from '@/data/countryData';
     export default {
         name: 'VacationPicker',
+        components: {
+            TheWorld
+        },
         data: function() {
             return {
                 countryData: countryData,
                 header: 'Vue Vacation Picker',
                 counter: 0
+            }
+        },
+        methods: {
+            increment() {
+                this.counter++;
+            },
+            decrement() {
+                this.counter--;
             }
         }
     }
