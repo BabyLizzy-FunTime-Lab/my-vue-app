@@ -1,12 +1,22 @@
 <template>
     <div class="container-fluid">
         <div class="container">
+            <img src="@/assets/flags/aw.svg">
             <h1>{{header}}</h1>
             <ul class="list-group">
-                <li class="list-group-item" v-for="(country, index) in countries" :key="index"
+                <li class="list-group-item" data-bs-toggle="collapse" :data-bs-target="'#' + country.altSpellings[0]" aria-expanded="false" v-for="(country, index) in countries" :key="index"
                     :title="'The capital is: ' + country.capital">
                     {{index}} -
                     {{country.name}}
+                    <div class="collapse" aria-expanded="false" :id="country.altSpellings[0]">
+                        <img :src="'@/assets/flags/' + lowerCase(country.altSpellings[0]) + '.svg'" :alt="'Flag of ' + country.name" class="img-thumbnail">
+                        <ul class="list-group">
+                            <li class="list-group-item">Capital: {{country.capital}}</li>
+                            <li class="list-group-item">Region: {{country.region}}</li>
+                            <li class="list-group-item">Sub-region: {{country.subregion}}</li>
+                            <li class="list-group-item">Population: {{country.population}}</li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -21,6 +31,11 @@
             return {
                 countries: countryInfo,
                 header: 'The World'
+            }
+        },
+        methods: {
+            lowerCase(string) {
+                return string.toLowerCase();
             }
         }
     }
