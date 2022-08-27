@@ -9,7 +9,10 @@
                     {{index}} -
                     {{country.name}}
                     <div class="collapse" aria-expanded="false" :id="country.altSpellings[0]">
-                        <img :src="'@/assets/flags/' + lowerCase(country.altSpellings[0]) + '.svg'" :alt="'Flag of ' + country.name" class="img-thumbnail">
+                        <img :src="flagLink(country.altSpellings[0])" :alt="'Flag of ' + country.name" class="img-thumbnail">
+                        <!-- <img v-attr="src:flagLink(country.altSpellings[0])" :alt="'Flag of ' + country.name" class="img-thumbnail"> -->
+                        <!-- <img v-attr="src: '@/assets/flags/' + country.altSpellings[0] + '.svg' " :alt="'Flag of ' + country.name" class="img-thumbnail"> -->
+
                         <ul class="list-group">
                             <li class="list-group-item">Capital: {{country.capital}}</li>
                             <li class="list-group-item">Region: {{country.region}}</li>
@@ -34,8 +37,10 @@
             }
         },
         methods: {
-            lowerCase(string) {
-                return string.toLowerCase();
+            flagLink(flagletters) {
+                let lowerflagletters = flagletters.toLowerCase();
+                let link = '/src/assets/flags/' + lowerflagletters + '.svg';
+                return link;
             }
         }
     }
