@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <div class="container">
+        <div class="container countries-container">
             <!-- <img src="@/assets/flags/aw.svg"> -->
             <h1>{{header}}</h1>
             <ul class="list-group">
@@ -9,9 +9,7 @@
                     {{index}} -
                     {{country.name}}
                     <div class="collapse" aria-expanded="false" :id="'info-' + country.altSpellings[0]">
-                        <img :src="flagLink(country.altSpellings[0])" :alt="'Flag of ' + country.name" class="img-thumbnail">
-                        <!-- <img v-attr="src:flagLink(country.altSpellings[0])" :alt="'Flag of ' + country.name" class="img-thumbnail"> -->
-                        <!-- <img v-attr="src: '@/assets/flags/' + country.altSpellings[0] + '.svg' " :alt="'Flag of ' + country.name" class="img-thumbnail"> -->
+                        <img :src="flagLink(country.altSpellings[0])" :alt="'Flag of ' + country.name" class="img-thumbnail mx-auto d-block flag-thumbnail">
                         <ul class="list-group">
                             <li class="list-group-item">Capital: {{country.capital}}</li>
                             <li class="list-group-item">Region: {{country.region}}</li>
@@ -51,5 +49,11 @@
 </script>
 
 <style scoped>
-    
+    .countries-container {
+        max-width: 40em;
+    }
+    .flag-thumbnail {
+        width: 20em;
+        margin: .5em 0 .5em 0;
+    }
 </style>

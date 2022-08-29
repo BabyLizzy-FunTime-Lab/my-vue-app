@@ -9,6 +9,13 @@
                     {{country.name}}
                 </li>
             </ul>
+            <h2>Selected:</h2>
+            <ul class="list-group">
+                <li class="list-group-item">{{ selectedCountry.id }}</li>
+                <li class="list-group-item">{{ selectedCountry.name }}</li>
+                <li class="list-group-item">{{ selectedCountry.capital }}</li>
+                <li class="list-group-item">{{ selectedCountry.details }}</li>
+            </ul>
         </div>
         <div class="container teller">
             <h3>Teller: {{counter}}</h3>
@@ -57,9 +64,19 @@
             }
         },
         computed: {
-            // selectedCountry() {
-            //     console.log('selectedCountry aangeroepen');
-            // }
+            selectedCountry() {
+                console.log('selectedCountry aangeroepen');
+                return {
+                    // id: this.countryData.countries[this.selectedCountryIndex].id,
+                    // name: this.countryData.countries[this.selectedCountryIndex].name,
+                    // capital: this.countryData.countries[this.selectedCountryIndex].capital,
+                    // cost: this.countryData.countries[this.selectedCountryIndex].cost,
+                    // details: this.countryData.countries[this.selectedCountryIndex].details,
+                    // img: this.countryData.countries[this.selectedCountryIndex].img
+                    // spread operator
+                    ...this.countryData.countries[this.selectedCountryIndex]                    
+                }
+            }
         }
     }
 </script>
