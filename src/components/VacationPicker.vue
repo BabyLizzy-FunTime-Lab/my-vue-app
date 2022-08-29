@@ -4,7 +4,7 @@
             <h1>{{header}}</h1>
             <ul class="list-group">
                 <li class="list-group-item" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
-                    v-bind:title="country.details" @click="selected(country.name)">
+                    v-bind:title="country.details" @click="selectCountry(index)">
                     {{index}} -
                     {{country.name}}
                 </li>
@@ -41,7 +41,8 @@
                 countryData: countryData,
                 header: 'Vue Vacation Picker',
                 numbersArray: [10,20,30,40,50],
-                counter: 0
+                counter: 0,
+                selectedCountryIndex: 0
             }
         },
         methods: {
@@ -51,9 +52,14 @@
             decrement() {
                 this.counter--;
             },
-            selected(selectedcountry) {
-                alert("You selected: " + selectedcountry);
+            selectCountry(index) {
+                this.selectedCountryIndex = index;
             }
+        },
+        computed: {
+            // selectedCountry() {
+            //     console.log('selectedCountry aangeroepen');
+            // }
         }
     }
 </script>

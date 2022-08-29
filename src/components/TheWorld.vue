@@ -1,26 +1,7 @@
 <template>
-    <div class="row">
-        <div class="col-4">
-            <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
-            </div>
-        </div>
-        <div class="col-8">
-            <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-            </div>
-        </div>
-    </div>
-
     <div class="container-fluid">
         <div class="container">
-            <img src="@/assets/flags/aw.svg">
+            <!-- <img src="@/assets/flags/aw.svg"> -->
             <h1>{{header}}</h1>
             <ul class="list-group">
                 <li class="list-group-item list-group-item-action country" data-bs-toggle="collapse" :data-bs-target="'#info-' + country.altSpellings[0]" aria-expanded="false" v-for="(country, index) in countries" :key="index"
@@ -46,6 +27,7 @@
 
 <script>
     import countryInfo from '@/data/countries.json';
+    
     export default {
         name: 'TheWorld',
         data: function() {
@@ -56,10 +38,14 @@
         },
         methods: {
             flagLink(flagletters) {
+                let flags = require.context('@/assets/flags/');
                 let lowerflagletters = flagletters.toLowerCase();
-                let link = '/src/assets/flags/' + lowerflagletters + '.svg';
-                return link;
+                let link = './' + lowerflagletters + '.svg';
+                return flags(link);
             }
+        },
+        computed: {
+            
         }
     }
 </script>
