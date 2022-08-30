@@ -15,6 +15,12 @@
                 <li class="list-group-item">{{ selectedCountry.name }}</li>
                 <li class="list-group-item">{{ selectedCountry.capital }}</li>
                 <li class="list-group-item">{{ selectedCountry.details }}</li>
+                <li class="list-group-item" v-if="isExpensive">
+                    <span class="badge bg-danger rounded-pill">Expensive!</span>
+                </li>
+                <li class="list-group-item">
+                    <img :src="getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" class="img-fluid mx-auto d-block">
+                </li>
             </ul>
         </div>
         <div class="container teller">
@@ -38,8 +44,11 @@
 <script>
     import TheWorld from './TheWorld.vue';
     import countryData from '@/data/countryData';
+    import mixins from '@/mixins/mixins';
+
     export default {
         name: 'VacationPicker',
+        mixins: [mixins],
         components: {
             TheWorld
         },
@@ -76,6 +85,9 @@
                     // spread operator
                     ...this.countryData.countries[this.selectedCountryIndex]                    
                 }
+            },
+            isExpensive() {
+                return this.countryData.countries[this.selectedCountryIndex].cost > 4000;
             }
         }
     }

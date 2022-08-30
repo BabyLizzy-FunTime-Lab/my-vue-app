@@ -36,10 +36,11 @@
         },
         methods: {
             flagLink(flagletters) {
-                let flags = require.context('@/assets/flags/');
+                // let flags = require.context('@/assets/flags/');
                 let lowerflagletters = flagletters.toLowerCase();
-                let link = './' + lowerflagletters + '.svg';
-                return flags(link);
+                // let link = './' + lowerflagletters + '.svg';
+                // return flags(link);
+                return require('@/assets/flags/' + lowerflagletters + '.svg');
             }
         },
         computed: {
