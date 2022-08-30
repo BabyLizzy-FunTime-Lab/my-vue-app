@@ -25,7 +25,17 @@
         </div>
         <div class="container v-model">
             <h2>Other countries:</h2>
-            <input v-model="newCountry"/>
+            <input type="text" 
+                v-model="newCountry"
+                @keyup.enter="addCountry(newCountry)"
+                class="form-control-lg" placeholder="New country..."/>
+            <button @click="addCountry(newCountry)" class="btn btn-info">Add country</button>
+            <ul class="list-group">
+                <li class="list-group-item"
+                    v-for="(country, index) in newCountries" :key="index">
+                    {{ country }}
+                </li>
+            </ul>
             <h3>New country is, {{ newCountry }}</h3>
         </div>
         <div class="container teller">
@@ -64,7 +74,8 @@
                 numbersArray: [10,20,30,40,50],
                 counter: 0,
                 selectedCountryIndex: 0,
-                newCountry: 'Wakanda'
+                newCountry: 'Wakanda',
+                newCountries: []
             }
         },
         methods: {
