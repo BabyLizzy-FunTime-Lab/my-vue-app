@@ -38,6 +38,21 @@
             </ul>
             <h3>New country is, {{ newCountry }}</h3>
         </div>
+        <div class="container costs">
+            <h2>Destinations cheaper than: </h2>
+            <select class="form-control-lg"
+                v-model="selectedCost"
+                @change="filterCountries()">
+                <option v-for="(cost, index) in costs" :key="index" :value="cost">
+                    {{ cost }}
+                </option>
+            </select>
+            <ul class="list-group">
+                <li v-for="(country, index) in filteredCountries" :key="index" class="list-group-item">
+                    {{ country.name }} (Euro: {{ country.cost }})
+                </li>
+            </ul>
+        </div>
         <div class="container teller">
             <h3>Teller: {{counter}}</h3>
             <button @click="increment()" class="btn btn-success">+</button>
@@ -75,7 +90,10 @@
                 counter: 0,
                 selectedCountryIndex: 0,
                 newCountry: 'Wakanda',
-                newCountries: []
+                newCountries: [],
+                selectedCost: 1000,
+                costs: [1000, 2000, 3000, 4000, 5000, 6000],
+                filteredCountries: [] 
             }
         },
         methods: {
@@ -87,6 +105,13 @@
             },
             selectCountry(index) {
                 this.selectedCountryIndex = index;
+            },
+            addCountry() {
+                this.newCountries.push(this.newCountry);
+                this.newCountry = '';
+            },
+            filterCountries() {
+                this.filteredCountries = this.countryData.countries.filter(country => country.cost < this.selectedCost)
             }
         },
         computed: {
@@ -111,9 +136,9 @@
 </script>
 
 <style scoped>
-    .teller, .numbers, .v-model{
+    .teller, .numbers, .v-model {
         text-align: center;
-        padding: 1em 0em 1em 0em;
+        padding: 1.5em 0em 1.5em 0em;
     }
     select {
         max-width: 15em;
