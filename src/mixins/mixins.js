@@ -4,5 +4,8 @@ export default {
             console.log(img);
             return require('../assets/countries/' + img);
         }
+    },
+    created() {
+        console.log('Component lifecycle hook created() called');
     }
 }

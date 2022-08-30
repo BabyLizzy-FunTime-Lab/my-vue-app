@@ -23,6 +23,11 @@
                 </li>
             </ul>
         </div>
+        <div class="container v-model">
+            <h2>Other countries:</h2>
+            <input v-model="newCountry"/>
+            <h3>New country is, {{ newCountry }}</h3>
+        </div>
         <div class="container teller">
             <h3>Teller: {{counter}}</h3>
             <button @click="increment()" class="btn btn-success">+</button>
@@ -58,7 +63,8 @@
                 header: 'Vue Vacation Picker',
                 numbersArray: [10,20,30,40,50],
                 counter: 0,
-                selectedCountryIndex: 0
+                selectedCountryIndex: 0,
+                newCountry: 'Wakanda'
             }
         },
         methods: {
@@ -94,7 +100,7 @@
 </script>
 
 <style scoped>
-    .teller, .numbers{
+    .teller, .numbers, .v-model{
         text-align: center;
         padding: 1em 0em 1em 0em;
     }
