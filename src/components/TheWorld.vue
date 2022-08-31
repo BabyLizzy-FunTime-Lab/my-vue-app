@@ -2,6 +2,8 @@
     <div class="container-fluid">
         <div class="container countries-container">
             <h1>{{header}}</h1>
+            <p>{{mixintext}}</p>
+            <input type="text" v-model="mixintext">
             <div class="row">
                 <div class="col-sm countries-section">
                     <h2>Country Information:</h2>
@@ -48,15 +50,20 @@
 
 <script>
     import countryInfo from '@/data/countries.json';
+import mixins from '@/mixins/mixins';
     
     export default {
         name: 'TheWorld',
+        mixins: [mixins],
         data: function() {
             return {
                 header: 'The World',
                 countries: countryInfo,
                 selectedCountryIndex: 11
             }
+        },
+        created() {
+            console.log("The World component created");
         },
         methods: {
             flagLink(flagletters) {

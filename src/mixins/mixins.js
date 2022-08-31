@@ -1,4 +1,9 @@
 export default {
+    data() {
+        return {
+            mixintext:'Text from mixin'
+        }
+    },
     methods: {
         getImgUrl(img) {
             console.log(img);

@@ -51,13 +51,14 @@
                 @keyup.enter="addCountry(newCountry)"
                 class="form-control-lg" placeholder="New country..."/>
             <button @click="addCountry(newCountry)" class="btn btn-info">Add country</button>
+            <h3>The new country is, {{ newCountry }}</h3>
             <ul class="list-group">
-                <li class="list-group-item"
+                <li class="list-group-item d-flex justify-content-between align-items-center"
                     v-for="(country, index) in newCountries" :key="index">
                     {{ country }}
+                    <button @click="deleteNewCountry(country)" class="btn btn-danger">Delete</button>
                 </li>
             </ul>
-            <h3>New country is, {{ newCountry }}</h3>
         </div>
         <div class="container costs">
             <h2>Destinations cheaper than: </h2>
@@ -87,6 +88,7 @@
                 <option selected>Choose a number</option>
                 <option v-for="(number, index) in numbersArray" :key="index" :value="number">{{number}}</option>
             </select>
+            <p>{{mixintext}}</p>
         </div>
         <TheWorld/>
     </div>
@@ -147,8 +149,13 @@
                 } else {
                     this.showCountryDetails = true;
                 }
+            },
+            deleteNewCountry(country) {
+                let index = this.newCountries.indexOf(country);
+                if (index > -1) {
+                    this.newCountries.splice(index, 1);
+                }
             }
-
         },
         computed: {
             selectedCountry() {
@@ -179,9 +186,15 @@
         background-color: gainsboro;
         text-align: center;
     }
-    .teller, .numbers, .v-model {
+    .teller, .numbers {
         text-align: center;
         padding: 1.5em 0em 1.5em 0em;
+    }
+    .v-model {
+        padding: 1.5em 0em 1.5em 0em;
+    }
+    .v-model button {
+        margin: 0 1em 0 1em;
     }
     select {
         max-width: 15em;
