@@ -1,27 +1,48 @@
 <template>
     <div class="container-fluid">
         <div class="container">
-            <h1>{{header}}</h1>
-            <ul class="list-group">
-                <li class="list-group-item" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
-                    v-bind:title="country.details" @click="selectCountry(index)">
-                    {{index}} -
-                    {{country.name}}
-                </li>
-            </ul>
-            <h2>Selected:</h2>
-            <ul class="list-group">
-                <li class="list-group-item">{{ selectedCountry.id }}</li>
-                <li class="list-group-item">{{ selectedCountry.name }}</li>
-                <li class="list-group-item">{{ selectedCountry.capital }}</li>
-                <li class="list-group-item">{{ selectedCountry.details }}</li>
-                <li class="list-group-item" v-if="isExpensive">
-                    <span class="badge bg-danger rounded-pill">Expensive!</span>
-                </li>
-                <li class="list-group-item">
-                    <img :src="getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" class="img-fluid mx-auto d-block">
-                </li>
-            </ul>
+            <div class="row">
+                <h1>{{header}}</h1>
+                <div class="col-sm">
+                    <h2>Destinations:</h2>
+                    <div class="jumbotron">
+                        <h1 class="display-4">{{ selectedCountry.name }}</h1>
+                        <h2>
+                            Capital: {{ selectedCountry.capital }} <span v-if="isOnSale" class="badge bg-success rounded-pill">Sale!!</span>
+                        </h2>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <button type="button" class="btn btn-primary p-2" @click="btnBackIndex()">Back</button>
+                        <button type="button" class="btn btn-primary p-2" @click="btnForwardIndex()">Forward</button>
+                        <button type="button" class="btn btn-primary p-2" @click="toggleCountryDetails()">Hide details</button>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
+                            v-bind:title="country.details" @click="selectCountry(index)">
+                            {{index}} -
+                            {{country.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <h2>Selected:</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">{{ selectedCountry.id }}</li>
+                        <li class="list-group-item">{{ selectedCountry.name }}</li>
+                        <li class="list-group-item">{{ selectedCountry.capital }}</li>
+                        <li class="list-group-item" v-if="showCountryDetails">{{ selectedCountry.details }}</li>
+                        <li class="list-group-item" v-if="isExpensive">
+                            <span class="badge bg-danger rounded-pill">Expensive!</span>
+                        </li>
+                        <li class="list-group-item" v-if="isOnSale">
+                            <span class="badge bg-success rounded-pill">Sale!!</span>
+                        </li>
+                        <li class="list-group-item">
+                            <img :src="getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" class="img-fluid mx-auto d-block">
+                        </li>
+                    </ul>
+                </div>
+            </div>    
         </div>
         <div class="container v-model">
             <h2>Other countries:</h2>
@@ -93,7 +114,8 @@
                 newCountries: [],
                 selectedCost: 1000,
                 costs: [1000, 2000, 3000, 4000, 5000, 6000],
-                filteredCountries: [] 
+                filteredCountries: [],
+                showCountryDetails: true 
             }
         },
         methods: {
@@ -112,7 +134,21 @@
             },
             filterCountries() {
                 this.filteredCountries = this.countryData.countries.filter(country => country.cost < this.selectedCost)
+            },
+            btnBackIndex() {
+                this.selectedCountryIndex--;
+            },
+            btnForwardIndex() {
+                this.selectedCountryIndex++;
+            },
+            toggleCountryDetails() {
+                if(this.showCountryDetails) {
+                    this.showCountryDetails = false;
+                } else {
+                    this.showCountryDetails = true;
+                }
             }
+
         },
         computed: {
             selectedCountry() {
@@ -130,12 +166,19 @@
             },
             isExpensive() {
                 return this.countryData.countries[this.selectedCountryIndex].cost > 4000;
+            },
+            isOnSale() {
+                return this.countryData.countries[this.selectedCountryIndex].cost < 4000;
             }
         }
     }
 </script>
 
 <style scoped>
+    .jumbotron {
+        background-color: gainsboro;
+        text-align: center;
+    }
     .teller, .numbers, .v-model {
         text-align: center;
         padding: 1.5em 0em 1.5em 0em;
