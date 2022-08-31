@@ -50,7 +50,7 @@
 
 <script>
     import countryInfo from '@/data/countries.json';
-import mixins from '@/mixins/mixins';
+    import mixins from '@/mixins/mixins';
     
     export default {
         name: 'TheWorld',

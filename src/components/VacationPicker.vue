@@ -96,6 +96,7 @@
 
 <script>
     import TheWorld from './TheWorld.vue';
+    // import CountryDetail from './CountryDetail.vue';
     import countryData from '@/data/countryData';
     import mixins from '@/mixins/mixins';
 
@@ -103,7 +104,8 @@
         name: 'VacationPicker',
         mixins: [mixins],
         components: {
-            TheWorld
+            TheWorld,
+            // CountryDetail
         },
         data: function() {
             return {
