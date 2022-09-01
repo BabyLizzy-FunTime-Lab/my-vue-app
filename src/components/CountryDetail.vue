@@ -6,7 +6,7 @@
             <li class="list-group-item">{{ country.name }}</li>
             <li class="list-group-item">{{ country.capital }}</li>
             <li class="list-group-item" 
-                v-if="showCountryDetails">{{ country.details }}</li>
+                v-if="showDetails">{{ country.details }}</li>
             <li class="list-group-item" v-if="isExpensive">
                 <span class="badge bg-danger rounded-pill">Expensive!</span>
             </li>
@@ -26,8 +26,16 @@
 
     export default {
         name: 'CountryDetail',
-        props: ['country'],
-        mixins: [mixins]
+        props: ['country', 'showDetails'],
+        mixins: [mixins],
+        computed: {
+            isExpensive() {
+                return this.country.cost > 4000;
+            },
+            isOnSale() {
+                return this.country.cost < 4000;
+            }
+        }
     }
 </script>
 

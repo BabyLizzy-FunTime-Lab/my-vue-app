@@ -8,7 +8,7 @@
                     <div class="jumbotron">
                         <h1 class="display-4">{{ selectedCountry.name }}</h1>
                         <h2>
-                            Capital: {{ selectedCountry.capital }} <span v-if="isOnSale" class="badge bg-success rounded-pill">Sale!!</span>
+                            Capital: {{ selectedCountry.capital }}
                         </h2>
                     </div>
                     <div class="d-flex flex-row">
@@ -24,27 +24,7 @@
                         </li>
                     </ul>
                 </div>
-                <CountryDetail v-if="selectedCountry" :country="selectedCountry"/>
-                <!-- <div class="col-sm">
-                    <h2>Selected: {{selectedCountry.name}}</h2>
-                    <ul class="list-group">
-                        <li class="list-group-item">{{ selectedCountry.id }}</li>
-                        <li class="list-group-item">{{ selectedCountry.name }}</li>
-                        <li class="list-group-item">{{ selectedCountry.capital }}</li>
-                        <li class="list-group-item" 
-                            v-if="showCountryDetails">{{ selectedCountry.details }}</li>
-                        <li class="list-group-item" v-if="isExpensive">
-                            <span class="badge bg-danger rounded-pill">Expensive!</span>
-                        </li>
-                        <li class="list-group-item" v-if="isOnSale">
-                            <span class="badge bg-success rounded-pill">Sale!!</span>
-                        </li>
-                        <li class="list-group-item">
-                            <img :src="getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" 
-                            class="img-fluid mx-auto d-block">
-                        </li>
-                    </ul>
-                </div> -->
+                <CountryDetail v-if="selectedCountry" :country="selectedCountry" :showDetails="showCountryDetails"/>
             </div>    
         </div>
         <div class="container v-model">
@@ -122,7 +102,7 @@
                 selectedCost: 1000,
                 costs: [1000, 2000, 3000, 4000, 5000, 6000],
                 filteredCountries: [],
-                showCountryDetails: true 
+                showCountryDetails: true
             }
         },
         methods: {
@@ -175,12 +155,6 @@
                     // spread operator
                     ...this.countryData.countries[this.selectedCountryIndex]                    
                 }
-            },
-            isExpensive() {
-                return this.countryData.countries[this.selectedCountryIndex].cost > 4000;
-            },
-            isOnSale() {
-                return this.countryData.countries[this.selectedCountryIndex].cost < 4000;
             }
         }
     }
