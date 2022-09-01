@@ -24,13 +24,15 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm">
-                    <h2>Selected:</h2>
+                <CountryDetail v-if="selectedCountry" :country="selectedCountry"/>
+                <!-- <div class="col-sm">
+                    <h2>Selected: {{selectedCountry.name}}</h2>
                     <ul class="list-group">
                         <li class="list-group-item">{{ selectedCountry.id }}</li>
                         <li class="list-group-item">{{ selectedCountry.name }}</li>
                         <li class="list-group-item">{{ selectedCountry.capital }}</li>
-                        <li class="list-group-item" v-if="showCountryDetails">{{ selectedCountry.details }}</li>
+                        <li class="list-group-item" 
+                            v-if="showCountryDetails">{{ selectedCountry.details }}</li>
                         <li class="list-group-item" v-if="isExpensive">
                             <span class="badge bg-danger rounded-pill">Expensive!</span>
                         </li>
@@ -38,10 +40,11 @@
                             <span class="badge bg-success rounded-pill">Sale!!</span>
                         </li>
                         <li class="list-group-item">
-                            <img :src="getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" class="img-fluid mx-auto d-block">
+                            <img :src="getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" 
+                            class="img-fluid mx-auto d-block">
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </div>    
         </div>
         <div class="container v-model">
@@ -96,7 +99,7 @@
 
 <script>
     import TheWorld from './TheWorld.vue';
-    // import CountryDetail from './CountryDetail.vue';
+    import CountryDetail from './CountryDetail.vue';
     import countryData from '@/data/countryData';
     import mixins from '@/mixins/mixins';
 
@@ -104,9 +107,9 @@
         name: 'VacationPicker',
         mixins: [mixins],
         components: {
-            TheWorld,
-            // CountryDetail
-        },
+    TheWorld,
+    CountryDetail
+},
         data: function() {
             return {
                 countryData: countryData,

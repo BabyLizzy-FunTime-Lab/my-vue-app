@@ -1,12 +1,33 @@
 <template>
-    <div>
-
+    <div class="col-sm">
+        <h2>Selected: {{country.name}}</h2>
+        <ul class="list-group">
+            <li class="list-group-item">{{ country.id }}</li>
+            <li class="list-group-item">{{ country.name }}</li>
+            <li class="list-group-item">{{ country.capital }}</li>
+            <li class="list-group-item" 
+                v-if="showCountryDetails">{{ country.details }}</li>
+            <li class="list-group-item" v-if="isExpensive">
+                <span class="badge bg-danger rounded-pill">Expensive!</span>
+            </li>
+            <li class="list-group-item" v-if="isOnSale">
+                <span class="badge bg-success rounded-pill">Sale!!</span>
+            </li>
+            <li class="list-group-item">
+                <img :src="getImgUrl(country.img)" :alt="country.img" 
+                class="img-fluid mx-auto d-block">
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
+    import mixins from '@/mixins/mixins';
+
     export default {
-        name: 'CountryDetail'
+        name: 'CountryDetail',
+        props: ['country'],
+        mixins: [mixins]
     }
 </script>
 
