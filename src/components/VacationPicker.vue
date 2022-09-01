@@ -11,7 +11,7 @@
                             Capital: {{ selectedCountry.capital }}
                         </h2>
                     </div>
-                    <div class="d-flex flex-row">
+                    <div class="buttons-container d-flex flex-row justify-content-around align-items-center">
                         <button type="button" class="btn btn-primary p-2" @click="btnBackIndex()">Back</button>
                         <button type="button" class="btn btn-primary p-2" @click="btnForwardIndex()">Forward</button>
                         <button type="button" class="btn btn-primary p-2" @click="toggleCountryDetails()">Hide details</button>
@@ -164,6 +164,14 @@
     .jumbotron {
         background-color: gainsboro;
         text-align: center;
+    }
+    .buttons-container {
+        margin: .5em 0 .5em 0;
+    }
+    .buttons-container button {
+        width: 7em;
+        height: 4em;
+        margin: .2em;
     }
     .teller, .numbers {
         text-align: center;

@@ -26,7 +26,22 @@
 
     export default {
         name: 'CountryDetail',
-        props: ['country', 'showDetails'],
+        // props: ['country', 'showDetails'],
+        props: {
+            country: {
+                type: Object,
+                required: true
+            },
+            showDetails: {
+                type: Boolean,
+                required: true
+            }
+            // number: {
+            //     type: Number,
+            //     required: false,
+            //     default: 100
+            // }
+        },
         mixins: [mixins],
         computed: {
             isExpensive() {
