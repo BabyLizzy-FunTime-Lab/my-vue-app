@@ -19,12 +19,20 @@
                     <ul class="list-group">
                         <li class="list-group-item" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
                             v-bind:title="country.details" @click="selectCountry(index)">
-                            {{index}} -
+                            {{country.id}} -
                             {{country.name}}
+                            <span class="badge bg-secondary rounded-pill float-end" v-show="country.rating !== 0">
+                                {{country.rating}}
+                            </span>
                         </li>
                     </ul>
                 </div>
-                <CountryDetail v-if="selectedCountry" :country="selectedCountry" :showDetails="showCountryDetails"/>
+                <CountryDetail v-if="selectedCountry" 
+                    @rating="onRating($event)"
+                    :country="selectedCountry" 
+                    :showDetails="showCountryDetails"
+                    :message-type="'info'"/>
+                    <!-- CountryDetail verwacht een string met de text "info" in de messageType prop-->
             </div>    
         </div>
         <div class="container v-model">
@@ -140,7 +148,14 @@
                 if (index > -1) {
                     this.newCountries.splice(index, 1);
                 }
-            }
+            },
+            onRating(rating) {
+                if (this.countryData.countries[this.selectedCountryIndex].rating) {
+                    this.countryData.countries[this.selectedCountryIndex].rating += rating;
+                } else {
+                    this.countryData.countries[this.selectedCountryIndex].rating = rating;
+                }
+            } 
         },
         computed: {
             selectedCountry() {
