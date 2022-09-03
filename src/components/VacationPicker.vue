@@ -36,20 +36,24 @@
             </div>    
         </div>
         <div class="container v-model">
-            <h2>Other countries:</h2>
-            <input type="text" 
-                v-model="newCountry"
-                @keyup.enter="addCountry(newCountry)"
-                class="form-control-lg" placeholder="New country..."/>
-            <button @click="addCountry(newCountry)" class="btn btn-info">Add country</button>
-            <h3>The new country is, {{ newCountry }}</h3>
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center"
-                    v-for="(country, index) in newCountries" :key="index">
-                    {{ country }}
-                    <button @click="deleteNewCountry(country)" class="btn btn-danger">Delete</button>
-                </li>
-            </ul>
+            <div class="container">
+                <h2>Other countries:</h2>
+                <div class="input-group mb-3">
+                    <input v-model="newCountry" @keyup.enter="addCountry(newCountry)"
+                        type="text" class="form-control" placeholder="New country" aria-label="New country" aria-describedby="button-addon2"/>
+                    <button @click="addCountry(newCountry)" class="btn btn-outline-primary" type="button" id="button-addon2">Add country</button>  
+                </div>
+            </div>
+            <div class="container">
+                <h4>The new country is, {{ newCountry }}</h4>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                        v-for="(country, index) in newCountries" :key="index">
+                        {{ country }}
+                        <button @click="deleteNewCountry(country)" class="btn btn-danger">Delete</button>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="container costs">
             <h2>Destinations cheaper than: </h2>
@@ -195,9 +199,9 @@
     .v-model {
         padding: 1.5em 0em 1.5em 0em;
     }
-    .v-model button {
+    /* .v-model button {
         margin: 0 1em 0 1em;
-    }
+    } */
     select {
         max-width: 15em;
         margin: auto;

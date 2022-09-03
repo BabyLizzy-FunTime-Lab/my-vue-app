@@ -4,7 +4,7 @@
         <ul class="list-group">
             <li class="list-group-item d-flex flex-row justify-content-between align-items-center">
                 {{ country.id }}
-                <span class="float-right">
+                <span>
                     <button @click="setRating(1)" class="... btn btn-success">+1</button>
                     <button @click="setRating(-1)" class="... btn btn-danger">-1</button>
                 </span>
