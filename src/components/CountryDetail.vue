@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm">
+    <div>
         <h2>Selected: {{country.name}}</h2>
         <ul class="list-group">
             <li class="list-group-item d-flex flex-row justify-content-between align-items-center">

@@ -27,12 +27,14 @@
                         </li>
                     </ul>
                 </div>
-                <CountryDetail v-if="selectedCountry" 
-                    @rating="onRating($event)"
-                    :country="selectedCountry" 
-                    :showDetails="showCountryDetails"
-                    :message-type="'info'"/>
-                    <!-- CountryDetail verwacht een string met de text "info" in de messageType prop-->
+                <CollapsibleSection class="col-sm">
+                    <CountryDetail v-if="selectedCountry" 
+                        @rating="onRating($event)"
+                        :country="selectedCountry" 
+                        :showDetails="showCountryDetails"
+                        :message-type="'info'"/>
+                        <!-- CountryDetail verwacht een string met de text "info" in de messageType prop-->
+                </CollapsibleSection>
             </div>    
         </div>
         <div class="container v-model">
@@ -46,13 +48,13 @@
             </div>
             <div class="container">
                 <h4>The new country is, {{ newCountry }}</h4>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center"
-                        v-for="(country, index) in newCountries" :key="index">
-                        {{ country }}
-                        <button @click="deleteNewCountry(country)" class="btn btn-danger">Delete</button>
-                    </li>
-                </ul>
+                <TransitionGroup class="list-group" name="list" tag="ul">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            v-for="(country, index) in newCountries" :key="index">
+                            {{ country }}
+                            <button @click="deleteNewCountry(country)" class="btn btn-danger">Delete</button>
+                        </li>
+                </TransitionGroup>
             </div>
         </div>
         <div class="container costs">
@@ -92,6 +94,7 @@
 <script>
     import TheWorld from './TheWorld.vue';
     import CountryDetail from './CountryDetail.vue';
+    import CollapsibleSection from './CollapsibleSection.vue';
     import countryData from '@/data/countryData';
     import mixins from '@/mixins/mixins';
 
@@ -99,9 +102,10 @@
         name: 'VacationPicker',
         mixins: [mixins],
         components: {
-    TheWorld,
-    CountryDetail
-},
+            TheWorld,
+            CountryDetail,
+            CollapsibleSection
+        },
         data: function() {
             return {
                 countryData: countryData,
@@ -206,4 +210,13 @@
         max-width: 15em;
         margin: auto;
     }
+    /* This is the vue animation of other countries */
+    .list-enter-active, .list-leave-active {
+        transition: all 0.5s ease;
+    }
+    .list-enter-from, .list-leave-to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
 </style>
